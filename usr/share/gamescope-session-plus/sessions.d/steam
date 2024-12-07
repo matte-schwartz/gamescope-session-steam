@@ -112,3 +112,11 @@ fi
 if command -v steam_notif_daemon > /dev/null; then
     steam_notif_daemon &
 fi
+
+if [[ -x $HOME/devkit-game/devkit-steam ]]; then
+	"$HOME"/devkit-game/devkit-steam "${steamargs[@]}" &
+	steam_wrapper_pid=$!
+else
+	steam "${steamargs[@]}" &
+	steam_wrapper_pid=$!
+fi
